@@ -11,6 +11,8 @@
 		F3C15359285E1C74001A7A81 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C15358285E1C74001A7A81 /* ContentView.swift */; };
 		F3C1535B285E1C74001A7A81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3C1535A285E1C74001A7A81 /* Assets.xcassets */; };
 		F3C1535E285E1C74001A7A81 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3C1535D285E1C74001A7A81 /* Preview Assets.xcassets */; };
+		F3C15365285E2395001A7A81 /* SetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C15364285E2395001A7A81 /* SetGame.swift */; };
+		F3C15367285E23D1001A7A81 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C15366285E23D1001A7A81 /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		F3C15358285E1C74001A7A81 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F3C1535A285E1C74001A7A81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3C1535D285E1C74001A7A81 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F3C15364285E2395001A7A81 /* SetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGame.swift; sourceTree = "<group>"; };
+		F3C15366285E23D1001A7A81 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			children = (
 				F3C15356285E1C74001A7A81 /* SetApp.swift */,
 				F3C15358285E1C74001A7A81 /* ContentView.swift */,
+				F3C15364285E2395001A7A81 /* SetGame.swift */,
+				F3C15366285E23D1001A7A81 /* Card.swift */,
 				F3C1535A285E1C74001A7A81 /* Assets.xcassets */,
 				F3C1535C285E1C74001A7A81 /* Preview Content */,
 			);
@@ -138,7 +144,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3C15359285E1C74001A7A81 /* ContentView.swift in Sources */,
+				F3C15365285E2395001A7A81 /* SetGame.swift in Sources */,
 				F3C15357285E1C74001A7A81 /* SetApp.swift in Sources */,
+				F3C15367285E23D1001A7A81 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
