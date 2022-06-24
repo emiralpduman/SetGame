@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F36F3EED2866512F008DA4D3 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36F3EEC2866512F008DA4D3 /* CardView.swift */; };
+		F36F3EEF2866518D008DA4D3 /* CardViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36F3EEE2866518D008DA4D3 /* CardViewVM.swift */; };
+		F36F3EF228665696008DA4D3 /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36F3EF128665696008DA4D3 /* Diamond.swift */; };
 		F3C15357285E1C74001A7A81 /* SetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C15356285E1C74001A7A81 /* SetApp.swift */; };
 		F3C15359285E1C74001A7A81 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C15358285E1C74001A7A81 /* ContentView.swift */; };
 		F3C1535B285E1C74001A7A81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3C1535A285E1C74001A7A81 /* Assets.xcassets */; };
@@ -16,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F36F3EEC2866512F008DA4D3 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		F36F3EEE2866518D008DA4D3 /* CardViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewVM.swift; sourceTree = "<group>"; };
+		F36F3EF128665696008DA4D3 /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
 		F3C15353285E1C74001A7A81 /* Set.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Set.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3C15356285E1C74001A7A81 /* SetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetApp.swift; sourceTree = "<group>"; };
 		F3C15358285E1C74001A7A81 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -36,6 +42,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F36F3EE828665102008DA4D3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F3C15364285E2395001A7A81 /* SetGame.swift */,
+				F3C15366285E23D1001A7A81 /* SetCard.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F36F3EE928665111008DA4D3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F36F3EF32866601E008DA4D3 /* CardView */,
+				F36F3EF028665681008DA4D3 /* Shapes */,
+				F3C15358285E1C74001A7A81 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F36F3EF028665681008DA4D3 /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				F36F3EF128665696008DA4D3 /* Diamond.swift */,
+			);
+			path = Shapes;
+			sourceTree = "<group>";
+		};
+		F36F3EF32866601E008DA4D3 /* CardView */ = {
+			isa = PBXGroup;
+			children = (
+				F36F3EEC2866512F008DA4D3 /* CardView.swift */,
+				F36F3EEE2866518D008DA4D3 /* CardViewVM.swift */,
+			);
+			path = CardView;
+			sourceTree = "<group>";
+		};
 		F3C1534A285E1C74001A7A81 = {
 			isa = PBXGroup;
 			children = (
@@ -55,10 +97,9 @@
 		F3C15355285E1C74001A7A81 /* Set */ = {
 			isa = PBXGroup;
 			children = (
+				F36F3EE928665111008DA4D3 /* Views */,
+				F36F3EE828665102008DA4D3 /* Models */,
 				F3C15356285E1C74001A7A81 /* SetApp.swift */,
-				F3C15358285E1C74001A7A81 /* ContentView.swift */,
-				F3C15364285E2395001A7A81 /* SetGame.swift */,
-				F3C15366285E23D1001A7A81 /* SetCard.swift */,
 				F3C1535A285E1C74001A7A81 /* Assets.xcassets */,
 				F3C1535C285E1C74001A7A81 /* Preview Content */,
 			);
@@ -145,8 +186,11 @@
 			files = (
 				F3C15359285E1C74001A7A81 /* ContentView.swift in Sources */,
 				F3C15365285E2395001A7A81 /* SetGame.swift in Sources */,
+				F36F3EF228665696008DA4D3 /* Diamond.swift in Sources */,
 				F3C15357285E1C74001A7A81 /* SetApp.swift in Sources */,
 				F3C15367285E23D1001A7A81 /* SetCard.swift in Sources */,
+				F36F3EEF2866518D008DA4D3 /* CardViewVM.swift in Sources */,
+				F36F3EED2866512F008DA4D3 /* CardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
