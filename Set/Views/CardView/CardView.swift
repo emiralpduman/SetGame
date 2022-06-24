@@ -13,8 +13,11 @@ struct CardView: View {
     
     var body: some View {
         VStack {
-            vm.shapeOf(card.shape)
-                .padding()
+            ForEach(0...vm.numberOfShapes(for: card.numberOfShapes), id:\.self) { _ in
+                vm.shapeOf(card.shape)
+                    .padding()
+            }
+
         }
 
     }
