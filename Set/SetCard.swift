@@ -12,8 +12,7 @@ struct SetCard {
     let shape: Shape
     let shading: Shading
     let color: Color
-    
-    
+
     enum Number: CaseIterable {
         case one, two, threee
     }
