@@ -8,8 +8,21 @@
 import SwiftUI
 
 class CardViewVM {
-    func numberOfShapes(for numberOfShapes: SetCard.Number) -> Int {
-        switch numberOfShapes {
+    func colorOfCard(_ card: SetCard) -> Color {
+        switch card.color {
+            
+        case.red:
+            return Color.red
+        case .green:
+            return Color.green
+        case .purple:
+            return Color.purple
+        }
+        
+    }
+    
+    func numberOfShapes(of card: SetCard) -> Int {
+        switch card.numberOfShapes {
         case .one:
             return 1
         case .two:
@@ -17,23 +30,5 @@ class CardViewVM {
         case .threee:
             return 3
         }
-    }
-    
-    @ViewBuilder func shapeOf(_ shape: SetCard.Shape) -> some View {
-        switch shape {
-            
-        case .diamond:
-            Diamond()
-                .stroke()
-                .foregroundColor(.black)
-        case .squiggle:
-            Rectangle()
-                .stroke()
-                .foregroundColor(.black)
-        case .oval:
-            Ellipse()
-                .stroke()
-                .foregroundColor(.black)
-        }
-    }
+    }    
 }

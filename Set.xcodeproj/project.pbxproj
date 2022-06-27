@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F305E9AF2868D5E80062D905 /* AspectVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = F305E9AE2868D5E80062D905 /* AspectVGrid.swift */; };
 		F36F3EED2866512F008DA4D3 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36F3EEC2866512F008DA4D3 /* CardView.swift */; };
 		F36F3EEF2866518D008DA4D3 /* CardViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36F3EEE2866518D008DA4D3 /* CardViewVM.swift */; };
 		F36F3EF228665696008DA4D3 /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36F3EF128665696008DA4D3 /* Diamond.swift */; };
+		F36F3EF52867B0E1008DA4D3 /* ShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36F3EF42867B0E1008DA4D3 /* ShapeView.swift */; };
+		F36F3EF72868CFD3008DA4D3 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36F3EF62868CFD3008DA4D3 /* TableView.swift */; };
+		F36F3EF92868D03B008DA4D3 /* TableViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36F3EF82868D03B008DA4D3 /* TableViewVM.swift */; };
 		F3C15357285E1C74001A7A81 /* SetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C15356285E1C74001A7A81 /* SetApp.swift */; };
-		F3C15359285E1C74001A7A81 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C15358285E1C74001A7A81 /* ContentView.swift */; };
 		F3C1535B285E1C74001A7A81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3C1535A285E1C74001A7A81 /* Assets.xcassets */; };
 		F3C1535E285E1C74001A7A81 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3C1535D285E1C74001A7A81 /* Preview Assets.xcassets */; };
 		F3C15365285E2395001A7A81 /* SetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C15364285E2395001A7A81 /* SetGame.swift */; };
@@ -19,12 +22,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F305E9AE2868D5E80062D905 /* AspectVGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectVGrid.swift; sourceTree = "<group>"; };
 		F36F3EEC2866512F008DA4D3 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		F36F3EEE2866518D008DA4D3 /* CardViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewVM.swift; sourceTree = "<group>"; };
 		F36F3EF128665696008DA4D3 /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
+		F36F3EF42867B0E1008DA4D3 /* ShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeView.swift; sourceTree = "<group>"; };
+		F36F3EF62868CFD3008DA4D3 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		F36F3EF82868D03B008DA4D3 /* TableViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewVM.swift; sourceTree = "<group>"; };
 		F3C15353285E1C74001A7A81 /* Set.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Set.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3C15356285E1C74001A7A81 /* SetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetApp.swift; sourceTree = "<group>"; };
-		F3C15358285E1C74001A7A81 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F3C1535A285E1C74001A7A81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3C1535D285E1C74001A7A81 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F3C15364285E2395001A7A81 /* SetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGame.swift; sourceTree = "<group>"; };
@@ -56,7 +62,9 @@
 			children = (
 				F36F3EF32866601E008DA4D3 /* CardView */,
 				F36F3EF028665681008DA4D3 /* Shapes */,
-				F3C15358285E1C74001A7A81 /* ContentView.swift */,
+				F36F3EF62868CFD3008DA4D3 /* TableView.swift */,
+				F36F3EF82868D03B008DA4D3 /* TableViewVM.swift */,
+				F305E9AE2868D5E80062D905 /* AspectVGrid.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -72,8 +80,9 @@
 		F36F3EF32866601E008DA4D3 /* CardView */ = {
 			isa = PBXGroup;
 			children = (
-				F36F3EEC2866512F008DA4D3 /* CardView.swift */,
 				F36F3EEE2866518D008DA4D3 /* CardViewVM.swift */,
+				F36F3EEC2866512F008DA4D3 /* CardView.swift */,
+				F36F3EF42867B0E1008DA4D3 /* ShapeView.swift */,
 			);
 			path = CardView;
 			sourceTree = "<group>";
@@ -184,12 +193,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3C15359285E1C74001A7A81 /* ContentView.swift in Sources */,
 				F3C15365285E2395001A7A81 /* SetGame.swift in Sources */,
 				F36F3EF228665696008DA4D3 /* Diamond.swift in Sources */,
 				F3C15357285E1C74001A7A81 /* SetApp.swift in Sources */,
 				F3C15367285E23D1001A7A81 /* SetCard.swift in Sources */,
 				F36F3EEF2866518D008DA4D3 /* CardViewVM.swift in Sources */,
+				F36F3EF72868CFD3008DA4D3 /* TableView.swift in Sources */,
+				F36F3EF92868D03B008DA4D3 /* TableViewVM.swift in Sources */,
+				F36F3EF52867B0E1008DA4D3 /* ShapeView.swift in Sources */,
+				F305E9AF2868D5E80062D905 /* AspectVGrid.swift in Sources */,
 				F36F3EED2866512F008DA4D3 /* CardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

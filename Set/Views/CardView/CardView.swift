@@ -13,9 +13,10 @@ struct CardView: View {
     
     var body: some View {
         VStack {
-            ForEach(0...vm.numberOfShapes(for: card.numberOfShapes), id:\.self) { _ in
-                vm.shapeOf(card.shape)
-                    .padding()
+            ForEach(0..<vm.numberOfShapes(of: card), id:\.self) { _ in
+                ShapeView(card: card)
+                    .foregroundColor(vm.colorOfCard(card))
+                
             }
 
         }
@@ -25,6 +26,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(card: SetCard(numberOfShapes: .two, shape: .diamond, shading: .solid, color: .red))
+        CardView(card: SetCard(numberOfShapes: .two, shape: .diamond, shading: .solid, color: .green))
     }
 }

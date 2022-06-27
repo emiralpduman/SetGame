@@ -10,7 +10,9 @@ import SwiftUI
 
 struct SetGame {
     private struct Rules {
-        static let numberOfCards: Int = 81
+        static let numberOfCards: Int = 2
+        static let numberOfFirstDeal: Int = 12
+        
         static func isSet(_ card1: SetCard, _ card2: SetCard, _ card3: SetCard) -> Bool {
             var isSet = false
             
@@ -50,8 +52,25 @@ struct SetGame {
         }
     }
     
-    //81 piece
-    var cards = [SetCard]()
+    var deck = [SetCard]()
+    var cardsOnTable = [SetCard]()
+    var selectedCards = [SetCard]()
+    
+    mutating func dealBy(_ number: Int) {
+        for _ in 0..<number {
+            cardsOnTable.append(deck.removeFirst())
+        }
+    }
+    
+    mutating func select(_ card: SetCard) {
+        for index in 0..<cardsOnTable.count {
+            if cardsOnTable[index].id == card.id {
+                cardsOnTable[index].isSelected.toggle()
+            }
+        }
+    }
+
+        
     
     init() {
         for _ in 0..<SetGame.Rules.numberOfCards {
@@ -59,7 +78,7 @@ struct SetGame {
                 for shapeOfNewCard in SetCard.Shape.allCases {
                     for shadingOfNewCard in SetCard.Shading.allCases {
                         for colorOfNewCard in SetCard.Color.allCases {
-                            cards.append(SetCard(numberOfShapes: numberOfNewCard, shape: shapeOfNewCard, shading: shadingOfNewCard, color: colorOfNewCard))
+                            deck.append(SetCard(numberOfShapes: numberOfNewCard, shape: shapeOfNewCard, shading: shadingOfNewCard, color: colorOfNewCard))
                         }
                     }
                 }
@@ -67,7 +86,8 @@ struct SetGame {
 
 
         }
-
+        deck.shuffle()
+        dealBy(Rules.numberOfFirstDeal)
     }
 }
 
