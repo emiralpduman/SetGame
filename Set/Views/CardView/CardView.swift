@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CardView: View {
     var card: SetCard
-    var game = Table()
+    @EnvironmentObject var game: Table
     
     var body: some View {
         GeometryReader { geometry in
@@ -25,7 +25,7 @@ struct CardView: View {
             }
             .frame(height: geometry.size.height)
             .padding(Settings.cardPadding)
-            .border(game.themeColor)
+            .border(card.isSelected ? game.selectionColor : game.themeColor)
             
         }
     }

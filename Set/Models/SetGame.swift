@@ -12,8 +12,22 @@ struct SetGame {
     
     var deck = [SetCard]()
     var cardsOnTable = [SetCard]()
-    var selectedCards = [SetCard]()
+    var thereIsSet = false
     
+    var selectedCards: [SetCard] {
+        var selection = [SetCard]()
+        
+        for card in cardsOnTable {
+            if card.isSelected {
+                selection.append(card)
+            }
+            
+        }
+        
+        return selection
+    }
+    
+
     mutating func dealBy(_ number: Int) {
         for _ in 0..<number {
             cardsOnTable.append(deck.removeFirst())
@@ -24,8 +38,13 @@ struct SetGame {
         for index in 0..<cardsOnTable.count {
             if cardsOnTable[index].id == card.id {
                 cardsOnTable[index].isSelected.toggle()
+                
             }
         }
+    }
+    
+    func collectionToCheckIfSet(_ selection: [SetCard]) -> Bool {
+        SetGame.Rules.isSet(selection[1], selection[2], selection[3])
     }
 
         

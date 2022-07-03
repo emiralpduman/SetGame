@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TableView: View {
-    var table = Table()
+    @ObservedObject var table = Table()
     
     var body: some View {
         AspectVGrid(items: table.cards, aspectRatio: 2/3) { card in
@@ -23,6 +23,7 @@ struct TableView: View {
             
         }
         .padding()
+        .environmentObject(table)
 
     }
 }

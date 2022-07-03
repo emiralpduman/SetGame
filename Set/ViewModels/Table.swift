@@ -7,16 +7,29 @@
 
 import SwiftUI
 
-class Table {
-    var game = SetGame()
-    var themeColor = Color.black
-    
-    func select(_ card: SetCard) {
-        game.select(card)
-    }
+class Table: ObservableObject {
+    @Published var game = SetGame()
+
 
     
-    // MARK: -Cards
+    var themeColor = Color.black
+    var selectionColor = Color.yellow
+    
+    func select(_ card: SetCard) {
+        if game.selectedCards.count < 3 {
+            game.select(card)
+        }
+        if game.selectedCards.count == 3 {
+            if card.isSelected {
+                game.select(card)
+            }
+        }
+    }
+    
+
+
+    
+    // MARK: -Card
     
     var cards: [SetCard] {
         game.cardsOnTable
