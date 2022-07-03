@@ -9,18 +9,31 @@ import SwiftUI
 
 struct CardView: View {
     var card: SetCard
-    var vm = CardViewVM()
+    var game = Table()
     
     var body: some View {
-        VStack {
-            ForEach(0..<vm.numberOfShapes(of: card), id:\.self) { _ in
-                ShapeView(card: card)
-                    .foregroundColor(vm.colorOfCard(card))
-                
+        GeometryReader { geometry in
+            VStack {
+                ForEach(0..<game.numberOfShapes(of: card), id:\.self) { _ in
+                    ShapeView(card: card)
+                        .foregroundColor(game.colorOfCard(card))
+                        .frame(height: geometry.size.height * Settings.heightToShapeRatio)
+                        .padding(Settings.paddingBetweenShapes)
+                        
+                }
+
             }
-
+            .frame(height: geometry.size.height)
+            .padding(Settings.cardPadding)
+            .border(game.themeColor)
+            
         }
-
+    }
+    
+    private struct Settings {
+        static let cardPadding: CGFloat = 10
+        static let paddingBetweenShapes: CGFloat = 5
+        static let heightToShapeRatio: CGFloat = 0.2
     }
 }
 

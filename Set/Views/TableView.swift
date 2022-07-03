@@ -8,12 +8,18 @@
 import SwiftUI
 
 struct TableView: View {
-    var vm = TableViewVM()
+    var table = Table()
     
     var body: some View {
-        AspectVGrid(items: vm.cards, aspectRatio: 2/3) { card in
+        AspectVGrid(items: table.cards, aspectRatio: 2/3) { card in
+
                 CardView(card: card)
                     .padding()
+                    .onTapGesture {
+                        table.select(card)
+                    }
+
+
             
         }
         .padding()

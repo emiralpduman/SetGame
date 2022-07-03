@@ -9,13 +9,15 @@ import Foundation
 
 struct SetCard: Identifiable {
     var id = UUID()
-    var isSelected = false
-    
+        
     let numberOfShapes: Number
     let shape: Shape
     let shading: Shading
     let color: Color
 
+    var isSelected = false
+
+    
     enum Number: CaseIterable {
         case one, two, threee
     }

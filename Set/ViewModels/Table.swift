@@ -1,13 +1,27 @@
 //
-//  CardViewVM.swift
+//  Table.swift
 //  Set
 //
-//  Created by Emiralp Duman on 24.06.2022.
+//  Created by Emiralp Duman on 26.06.2022.
 //
 
 import SwiftUI
 
-class CardViewVM {
+class Table {
+    var game = SetGame()
+    var themeColor = Color.black
+    
+    func select(_ card: SetCard) {
+        game.select(card)
+    }
+
+    
+    // MARK: -Cards
+    
+    var cards: [SetCard] {
+        game.cardsOnTable
+    }
+    
     func colorOfCard(_ card: SetCard) -> Color {
         switch card.color {
             
@@ -30,5 +44,9 @@ class CardViewVM {
         case .threee:
             return 3
         }
-    }    
+    }
+    
+    
+    
 }
+
