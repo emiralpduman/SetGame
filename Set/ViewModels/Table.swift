@@ -13,7 +13,9 @@ class Table: ObservableObject {
         game.thereIsSet
     }
     
-
+    var isEvaluationPeriod: Bool {
+        game.evaluationPeriod
+    }
     
     
     var cardColorOfDefaultSelection = Color.yellow

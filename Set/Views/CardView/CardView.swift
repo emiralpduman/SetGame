@@ -14,10 +14,19 @@ struct CardView: View {
     
     @ViewBuilder func themeLogic<Content: View>(_ content: Content) -> some View {
         if card.isSelected {
-            content.border(game.cardColorOfDefaultSelection)
-        }
-        else {
-            content.border(.black)
+            if game.isEvaluationPeriod {
+                if game.thereIsSet {
+                    content.border(game.cardColorOfSet)
+                } else {
+                    content.border(game.cardColorOfNotSet)
+                }
+                
+            }
+            else {
+                content.border(game.cardColorOfDefaultSelection)
+            }
+        } else {
+            content.border(game.cardColorOfNoSelection)
         }
     }
     
