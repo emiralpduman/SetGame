@@ -9,8 +9,10 @@ import SwiftUI
 
 class Table: ObservableObject {
     @Published var game = SetGame()
-
-
+    var thereIsSet: Bool {
+        game.thereIsSet
+    }
+    
     
     var themeColor = Color.black
     var selectionColor = Color.yellow

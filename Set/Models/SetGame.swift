@@ -41,13 +41,15 @@ struct SetGame {
                 
             }
         }
+        if selectedCards.count == 3 {
+            if SetGame.Rules.isSet(selectedCards[0], selectedCards[1], selectedCards[2]) {
+                thereIsSet = true
+            } else {
+                thereIsSet = false
+            }
+            
+        }
     }
-    
-    func collectionToCheckIfSet(_ selection: [SetCard]) -> Bool {
-        SetGame.Rules.isSet(selection[1], selection[2], selection[3])
-    }
-
-        
     
     init() {
         for _ in 0..<SetGame.Rules.numberOfCards {

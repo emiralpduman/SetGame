@@ -11,19 +11,22 @@ struct TableView: View {
     @ObservedObject var table = Table()
     
     var body: some View {
-        AspectVGrid(items: table.cards, aspectRatio: 2/3) { card in
+        
+        VStack {
+            Text(table.thereIsSet ? "It's a set!" : "NOT Set")
+            AspectVGrid(items: table.cards, aspectRatio: 2/3) { card in
 
-                CardView(card: card)
-                    .padding()
-                    .onTapGesture {
-                        table.select(card)
-                    }
-
-
+                    CardView(card: card)
+                        .padding()
+                        .onTapGesture {
+                            table.select(card)
+                        }
+            }
+            .padding()
+            .environmentObject(table)
             
         }
-        .padding()
-        .environmentObject(table)
+
 
     }
 }
