@@ -27,6 +27,14 @@ struct SetGame {
         return selection
     }
     
+    var evaluationPeriod: Bool {
+        if selectedCards.count == 3 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
 
     mutating func dealBy(_ number: Int) {
         for _ in 0..<number {
@@ -74,37 +82,45 @@ struct SetGame {
         static let amountOfFirstDeal: Int = 12
         
         static func isSet(_ card1: SetCard, _ card2: SetCard, _ card3: SetCard) -> Bool {
+            var numbersAreSet: Bool = false
+            var shapesAreSet: Bool = false
+            var shadingsAreSet: Bool = false
+            var colorsAreSet: Bool = false
             var isSet = false
             
             if card1.numberOfShapes == card2.numberOfShapes {
                 if card1.numberOfShapes == card3.numberOfShapes {
-                    isSet = true
+                    numbersAreSet = true
                 }
             } else if (card1.numberOfShapes != card3.numberOfShapes) && (card2.numberOfShapes != card3.numberOfShapes) {
-                isSet = true
+                numbersAreSet = true
             }
             
             if card1.shape == card2.shape {
                 if card1.shape == card3.shape {
-                    isSet = true
+                    shapesAreSet = true
                 }
             } else if (card1.shape != card3.shape) && (card2.shape != card3.shape) {
-                isSet = true
+                shapesAreSet = true
             }
             
             if card1.shading == card2.shading {
                 if card1.shading == card3.shading {
-                    isSet = true
+                    shadingsAreSet = true
                 }
             } else if (card1.shading != card3.shading) && (card2.shading != card3.shading) {
-                isSet = true
+                shadingsAreSet = true
             }
             
             if card1.color == card2.color {
                 if card1.color == card3.color {
-                    isSet = true
+                    colorsAreSet = true
                 }
             } else if (card1.color != card3.color) && (card2.color != card3.color) {
+                colorsAreSet = true
+            }
+            
+            if numbersAreSet && shapesAreSet && shadingsAreSet && colorsAreSet {
                 isSet = true
             }
             

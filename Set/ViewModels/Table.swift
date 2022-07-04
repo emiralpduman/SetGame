@@ -13,9 +13,13 @@ class Table: ObservableObject {
         game.thereIsSet
     }
     
+
     
-    var themeColor = Color.black
-    var selectionColor = Color.yellow
+    
+    var cardColorOfDefaultSelection = Color.yellow
+    var cardColorOfNotSet = Color.red
+    var cardColorOfSet = Color.green
+    var cardColorOfNoSelection = Color.black
     
     func select(_ card: SetCard) {
         if game.selectedCards.count < 3 {
@@ -27,6 +31,8 @@ class Table: ObservableObject {
             }
         }
     }
+    
+    
     
 
 

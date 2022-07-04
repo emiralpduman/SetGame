@@ -24,10 +24,7 @@ struct TableView: View {
             }
             .padding()
             .environmentObject(table)
-            
         }
-
-
     }
 }
 

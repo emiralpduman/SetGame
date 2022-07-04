@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct CardView: View {
-    var card: SetCard
     @EnvironmentObject var game: Table
+    
+    var card: SetCard
+    
+    @ViewBuilder func themeLogic<Content: View>(_ content: Content) -> some View {
+        if card.isSelected {
+            content.border(game.cardColorOfDefaultSelection)
+        }
+        else {
+            content.border(.black)
+        }
+    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -25,7 +35,10 @@ struct CardView: View {
             }
             .frame(height: geometry.size.height)
             .padding(Settings.cardPadding)
-            .border(card.isSelected ? game.selectionColor : game.themeColor)
+            .applyBordering() { view in
+                themeLogic(view)
+            }
+            
             
         }
     }
@@ -37,8 +50,8 @@ struct CardView: View {
     }
 }
 
-struct CardView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardView(card: SetCard(numberOfShapes: .two, shape: .diamond, shading: .solid, color: .green))
-    }
-}
+//struct CardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CardView(card: SetCard(numberOfShapes: .two, shape: .diamond, shading: .solid, color: .green))
+//    }
+//}

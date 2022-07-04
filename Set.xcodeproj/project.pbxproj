@@ -18,6 +18,7 @@
 		F3C1535E285E1C74001A7A81 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3C1535D285E1C74001A7A81 /* Preview Assets.xcassets */; };
 		F3C15365285E2395001A7A81 /* SetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C15364285E2395001A7A81 /* SetGame.swift */; };
 		F3C15367285E23D1001A7A81 /* SetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C15366285E23D1001A7A81 /* SetCard.swift */; };
+		F3EC0DE52873622B00D95C9F /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EC0DE42873622B00D95C9F /* View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		F3C1535D285E1C74001A7A81 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F3C15364285E2395001A7A81 /* SetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGame.swift; sourceTree = "<group>"; };
 		F3C15366285E23D1001A7A81 /* SetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCard.swift; sourceTree = "<group>"; };
+		F3EC0DE42873622B00D95C9F /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		F36F3EE928665111008DA4D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F3EC0DE32873621A00D95C9F /* extensions */,
 				F36F3EF32866601E008DA4D3 /* CardView */,
 				F36F3EF62868CFD3008DA4D3 /* TableView.swift */,
 				F305E9AE2868D5E80062D905 /* AspectVGrid.swift */,
@@ -126,6 +129,14 @@
 				F36F3EF82868D03B008DA4D3 /* Table.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F3EC0DE32873621A00D95C9F /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F3EC0DE42873622B00D95C9F /* View.swift */,
+			);
+			path = extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +211,7 @@
 			files = (
 				F3C15365285E2395001A7A81 /* SetGame.swift in Sources */,
 				F36F3EF228665696008DA4D3 /* Diamond.swift in Sources */,
+				F3EC0DE52873622B00D95C9F /* View.swift in Sources */,
 				F3C15357285E1C74001A7A81 /* SetApp.swift in Sources */,
 				F3C15367285E23D1001A7A81 /* SetCard.swift in Sources */,
 				F36F3EF72868CFD3008DA4D3 /* TableView.swift in Sources */,
