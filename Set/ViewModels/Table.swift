@@ -9,6 +9,12 @@ import SwiftUI
 
 class Table: ObservableObject {
     @Published var game = SetGame()
+    
+    
+    var cards: [SetCard] {
+        game.cardsOnTable
+    }
+    
     var thereIsSet: Bool {
         game.thereIsSet
     }
@@ -16,34 +22,35 @@ class Table: ObservableObject {
     var isEvaluationPeriod: Bool {
         game.evaluationPeriod
     }
-    
-    
-    var cardColorOfDefaultSelection = Color.yellow
-    var cardColorOfNotSet = Color.red
-    var cardColorOfSet = Color.green
-    var cardColorOfNoSelection = Color.black
-    
+
     func select(_ card: SetCard) {
         if game.selectedCards.count < 3 {
             game.select(card)
         }
-        if game.selectedCards.count == 3 {
-            if card.isSelected {
+        else {
+            if thereIsSet {
+                game.remove(cards: game.selectedCards)
+                if let _ = game.selectedCards.firstIndex(where: { $0.id == card.id}) {
+                    
+                }
+                else {
+                    game.select(card)
+                }
+            }
+            else {
+                for element in game.selectedCards {
+                    game.select(element)
+                }
                 game.select(card)
             }
         }
     }
     
-    
-    
-
-
+    func deal() {
+        game.dealBy(SetGame.Rules.amountOfdefaultDeal)
+    }
     
     // MARK: -Card
-    
-    var cards: [SetCard] {
-        game.cardsOnTable
-    }
     
     func colorOfCard(_ card: SetCard) -> Color {
         switch card.color {
@@ -69,7 +76,9 @@ class Table: ObservableObject {
         }
     }
     
-    
-    
+    var cardColorOfDefaultSelection = Color.yellow
+    var cardColorOfNotSet = Color.red
+    var cardColorOfSet = Color.green
+    var cardColorOfNoSelection = Color.black
 }
 

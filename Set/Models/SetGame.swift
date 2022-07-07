@@ -37,9 +37,18 @@ struct SetGame {
     
 
     mutating func dealBy(_ number: Int) {
-        for _ in 0..<number {
-            cardsOnTable.append(deck.removeFirst())
+        if deck.count >= number {
+            for _ in 0..<number {
+                cardsOnTable.append(deck.removeFirst())
+            }
+        } else {
+            for _ in 0..<deck.count {
+                cardsOnTable.append(deck.removeFirst())
+            }
         }
+        
+            
+
     }
     
     mutating func select(_ card: SetCard) {
@@ -56,6 +65,16 @@ struct SetGame {
                 thereIsSet = false
             }
             
+        }
+    }
+    
+    mutating func remove(cards: [SetCard]) {
+        for card in cards {
+            if let indexOfCard = cardsOnTable.firstIndex(where: { $0.id == card.id }) {
+                cardsOnTable.remove(at: indexOfCard)
+            } else {
+                print("indexOfCard = nil @SetGame.remove")
+            }
         }
     }
     
@@ -77,9 +96,10 @@ struct SetGame {
         dealBy(Rules.amountOfFirstDeal)
     }
     
-    private struct Rules {
+    struct Rules {
         static let numberOfCards: Int = 2
         static let amountOfFirstDeal: Int = 12
+        static let amountOfdefaultDeal: Int = 3
         
         static func isSet(_ card1: SetCard, _ card2: SetCard, _ card3: SetCard) -> Bool {
             var numbersAreSet: Bool = false

@@ -14,6 +14,9 @@ struct TableView: View {
         
         VStack {
             Text(table.thereIsSet ? "It's a set!" : "NOT Set")
+            Button("Deal 3 More Cards") {
+                table.deal()
+            }
             AspectVGrid(items: table.cards, aspectRatio: 2/3) { card in
 
                     CardView(card: card)
