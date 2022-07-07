@@ -16,17 +16,17 @@ struct CardView: View {
         if card.isSelected {
             if game.isEvaluationPeriod {
                 if game.thereIsSet {
-                    content.border(game.cardColorOfSet)
+                    content.border(game.cardColorOfSet, width: Settings.borderWidth)
                 } else {
-                    content.border(game.cardColorOfNotSet)
+                    content.border(game.cardColorOfNotSet, width: Settings.borderWidth)
                 }
                 
             }
             else {
-                content.border(game.cardColorOfDefaultSelection)
+                content.border(game.cardColorOfDefaultSelection, width: Settings.borderWidth)
             }
         } else {
-            content.border(game.cardColorOfNoSelection)
+            content.border(game.cardColorOfNoSelection, width: Settings.borderWidth)
         }
     }
     
@@ -56,6 +56,7 @@ struct CardView: View {
         static let cardPadding: CGFloat = 10
         static let paddingBetweenShapes: CGFloat = 5
         static let heightToShapeRatio: CGFloat = 0.2
+        static let borderWidth: CGFloat = 3
     }
 }
 
