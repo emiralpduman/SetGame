@@ -35,7 +35,7 @@ struct SetGame {
         }
     }
     
-
+    
     mutating func dealBy(_ number: Int) {
         if deck.count >= number {
             for _ in 0..<number {
@@ -46,9 +46,6 @@ struct SetGame {
                 cardsOnTable.append(deck.removeFirst())
             }
         }
-        
-            
-
     }
     
     mutating func select(_ card: SetCard) {
@@ -79,18 +76,14 @@ struct SetGame {
     }
     
     init() {
-        for _ in 0..<SetGame.Rules.numberOfCards {
-            for numberOfNewCard in SetCard.Number.allCases {
-                for shapeOfNewCard in SetCard.Shape.allCases {
-                    for shadingOfNewCard in SetCard.Shading.allCases {
-                        for colorOfNewCard in SetCard.Color.allCases {
-                            deck.append(SetCard(numberOfShapes: numberOfNewCard, shape: shapeOfNewCard, shading: shadingOfNewCard, color: colorOfNewCard))
-                        }
+        for numberOfNewCard in SetCard.Number.allCases {
+            for shapeOfNewCard in SetCard.Shape.allCases {
+                for shadingOfNewCard in SetCard.Shading.allCases {
+                    for colorOfNewCard in SetCard.Color.allCases {
+                        deck.append(SetCard(numberOfShapes: numberOfNewCard, shape: shapeOfNewCard, shading: shadingOfNewCard, color: colorOfNewCard))
                     }
                 }
             }
-
-
         }
         deck.shuffle()
         dealBy(Rules.amountOfFirstDeal)
@@ -147,7 +140,5 @@ struct SetGame {
             return isSet
         }
     }
-
+    
 }
-
-

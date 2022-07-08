@@ -30,6 +30,7 @@ class Table: ObservableObject {
         else {
             if thereIsSet {
                 game.remove(cards: game.selectedCards)
+                game.dealBy(SetGame.Rules.amountOfdefaultDeal)
                 if let _ = game.selectedCards.firstIndex(where: { $0.id == card.id}) {
                     
                 }

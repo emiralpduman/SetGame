@@ -378,6 +378,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Set/Preview Content\"";
 				DEVELOPMENT_TEAM = 44R27BB6SM;
 				ENABLE_PREVIEWS = YES;
+				GCC_OPTIMIZATION_LEVEL = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
