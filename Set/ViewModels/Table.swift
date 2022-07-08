@@ -8,11 +8,15 @@
 import SwiftUI
 
 class Table: ObservableObject {
-    @Published var game = SetGame()
+    @Published private var game = SetGame()
     
     
     var cards: [SetCard] {
         game.cardsOnTable
+    }
+    
+    var deck: [SetCard] {
+        game.deck
     }
     
     var thereIsSet: Bool {
@@ -29,7 +33,7 @@ class Table: ObservableObject {
         }
         else {
             if thereIsSet {
-                game.remove(cards: game.selectedCards)
+                game.removeFromTable(cards: game.selectedCards)
                 game.dealBy(SetGame.Rules.amountOfdefaultDeal)
                 if let _ = game.selectedCards.firstIndex(where: { $0.id == card.id}) {
                     
@@ -48,6 +52,11 @@ class Table: ObservableObject {
     }
     
     func deal() {
+        if thereIsSet {
+            for card in game.selectedCards {
+                game.removeFromTable(cards: [card])
+            }
+        }
         game.dealBy(SetGame.Rules.amountOfdefaultDeal)
     }
     

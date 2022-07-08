@@ -17,19 +17,21 @@ struct TableView: View {
             Button("Deal 3 More Cards") {
                 table.deal()
             }
-            AspectVGrid(items: table.cards, aspectRatio: 2/3) { card in
-
-                    CardView(card: card)
-                        .padding()
-                        .onTapGesture {
-                            table.select(card)
-                        }
-            }
-            .padding()
-            .environmentObject(table)
+            .disabled(table.deck.isEmpty)
         }
+        AspectVGrid(items: table.cards, aspectRatio: 2/3) { card in
+            
+            CardView(card: card)
+                .padding()
+                .onTapGesture {
+                    table.select(card)
+                }
+        }
+        .padding()
+        .environmentObject(table)
     }
 }
+
 
 struct TableView_Previews: PreviewProvider {
     static var previews: some View {

@@ -65,7 +65,7 @@ struct SetGame {
         }
     }
     
-    mutating func remove(cards: [SetCard]) {
+    mutating func removeFromTable(cards: [SetCard]) {
         for card in cards {
             if let indexOfCard = cardsOnTable.firstIndex(where: { $0.id == card.id }) {
                 cardsOnTable.remove(at: indexOfCard)
