@@ -17,7 +17,7 @@ struct ShapeView: View {
             case .striped:
                 Diamond()
                     .fill()
-                    .opacity(0.5)
+                    .opacity(DrawingConstants.opacityValueForStripedShading)
                 
             case .open:
                 Diamond()
@@ -41,7 +41,7 @@ struct ShapeView: View {
             case .striped:
                 Rectangle()
                     .fill()
-                    .opacity(0.5)
+                    .opacity(DrawingConstants.opacityValueForStripedShading)
             }
         
         case .oval:
@@ -57,14 +57,18 @@ struct ShapeView: View {
             case .striped:
                 Ellipse()
                     .fill()
-                    .opacity(0.5)
+                    .opacity(DrawingConstants.opacityValueForStripedShading)
             }
         }
     }
-}
-
-struct ShapeView_Previews: PreviewProvider {
-    static var previews: some View {
-        ShapeView(card: SetCard(numberOfShapes: .two, shape: .diamond, shading: .solid, color: .red))
+    
+    private struct DrawingConstants {
+        static let opacityValueForStripedShading: CGFloat = 0.25
     }
 }
+
+//struct ShapeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ShapeView(card: SetCard(numberOfShapes: .two, shape: .diamond, shading: .solid, color: .red))
+//    }
+//}

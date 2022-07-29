@@ -13,19 +13,24 @@ struct TableView: View {
     var body: some View {
         
         VStack {
+            Button("New Game") {
+                table.startNewGame()
+            }
+            
+            AspectVGrid(items: table.cards, aspectRatio: 3/4) { card in
+                CardView(card: card)
+                    .padding()
+                    .onTapGesture {
+                        table.select(card)
+                    }
+            }
+            
             Text(table.thereIsSet ? "It's a set!" : "NOT Set")
+            
             Button("Deal 3 More Cards") {
                 table.deal()
             }
             .disabled(table.deck.isEmpty)
-        }
-        AspectVGrid(items: table.cards, aspectRatio: 2/3) { card in
-            
-            CardView(card: card)
-                .padding()
-                .onTapGesture {
-                    table.select(card)
-                }
         }
         .padding()
         .environmentObject(table)

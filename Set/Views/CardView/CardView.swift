@@ -12,6 +12,30 @@ struct CardView: View {
     
     var card: SetCard
     
+    var body: some View {
+        GeometryReader { geometry in
+            VStack {
+                ForEach(0..<game.numberOfShapes(of: card), id:\.self) { _ in
+                    let shapeHeight: CGFloat = geometry.size.height * Settings.geometryShapeToHeightRatio
+                    let shapeWidth: CGFloat = shapeHeight * Settings.shapeWidthToHeightRatio
+                    
+                    ShapeView(card: card)
+                        .foregroundColor(game.colorOfCard(card))
+                        .frame(width: shapeWidth, height: shapeHeight)
+                        .padding(Settings.paddingBetweenShapes)
+                        
+                }
+
+            }
+            .padding(Settings.cardPadding)
+            .frame(width: geometry.size.width, height: geometry.size.height)
+            .applyBordering() { view in
+                themeLogic(view)
+            }
+
+        }
+    }
+    
     @ViewBuilder func themeLogic<Content: View>(_ content: Content) -> some View {
         if card.isSelected {
             if game.isEvaluationPeriod {
@@ -30,38 +54,19 @@ struct CardView: View {
         }
     }
     
-    var body: some View {
-        GeometryReader { geometry in
-            VStack {
-                ForEach(0..<game.numberOfShapes(of: card), id:\.self) { _ in
-                    ShapeView(card: card)
-                        .foregroundColor(game.colorOfCard(card))
-                        .frame(height: geometry.size.height * Settings.heightToShapeRatio)
-                        .padding(Settings.paddingBetweenShapes)
-                        
-                }
-
-            }
-            .frame(height: geometry.size.height)
-            .padding(Settings.cardPadding)
-            .applyBordering() { view in
-                themeLogic(view)
-            }
-            
-            
-        }
-    }
-    
     private struct Settings {
         static let cardPadding: CGFloat = 10
         static let paddingBetweenShapes: CGFloat = 5
-        static let heightToShapeRatio: CGFloat = 0.2
+        static let geometryShapeToHeightRatio: CGFloat = 0.15
+        static let shapeWidthToHeightRatio: CGFloat = 2
         static let borderWidth: CGFloat = 3
     }
 }
 
-//struct CardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CardView(card: SetCard(numberOfShapes: .two, shape: .diamond, shading: .solid, color: .green))
-//    }
-//}
+struct CardView_Previews: PreviewProvider {
+    static var table = Table()
+    static var previews: some View {
+        CardView(card: SetCard(numberOfShapes: .two, shape: .diamond, shading: .solid, color: .green))
+            .environmentObject(table)
+    }
+}

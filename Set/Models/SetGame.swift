@@ -91,7 +91,7 @@ struct SetGame {
     
     struct Rules {
         static let numberOfCards: Int = 2
-        static let amountOfFirstDeal: Int = 12
+        static let amountOfFirstDeal: Int = 81
         static let amountOfdefaultDeal: Int = 3
         
         static func isSet(_ card1: SetCard, _ card2: SetCard, _ card3: SetCard) -> Bool {

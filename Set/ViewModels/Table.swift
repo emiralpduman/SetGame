@@ -26,6 +26,10 @@ class Table: ObservableObject {
     var isEvaluationPeriod: Bool {
         game.evaluationPeriod
     }
+    
+    func startNewGame() {
+        game = SetGame()
+    }
 
     func select(_ card: SetCard) {
         if game.selectedCards.count < 3 {
