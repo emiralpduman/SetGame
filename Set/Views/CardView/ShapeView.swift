@@ -31,15 +31,15 @@ struct ShapeView: View {
         case .squiggle:
             switch card.shading {
             case .solid:
-                Rectangle()
+                Squiggle()
                     .fill()
                 
             case .open:
-                Rectangle()
+                Squiggle()
                     .stroke()
                 
             case .striped:
-                Rectangle()
+                Squiggle()
                     .fill()
                     .opacity(DrawingConstants.opacityValueForStripedShading)
             }

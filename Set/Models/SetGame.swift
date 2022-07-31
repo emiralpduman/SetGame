@@ -12,8 +12,6 @@ struct SetGame {
     
     var deck = [SetCard]()
     var cardsOnTable = [SetCard]()
-    var thereIsSet = false
-    
     var selectedCards: [SetCard] {
         var selection = [SetCard]()
         
@@ -27,14 +25,14 @@ struct SetGame {
         return selection
     }
     
+    var thereIsSet = false
     var evaluationPeriod: Bool {
         if selectedCards.count == 3 {
             return true
         } else {
             return false
         }
-    }
-    
+    }    
     
     mutating func dealBy(_ number: Int) {
         if deck.count >= number {
