@@ -16,8 +16,8 @@ struct ShapeView: View {
             switch card.shading {
             case .striped:
                 Diamond()
-                    .fill()
-                    .opacity(DrawingConstants.opacityValueForStripedShading)
+                    .stroke()
+                    .background(StripedTexture().fill(.black).clipShape(Diamond()))
                 
             case .open:
                 Diamond()

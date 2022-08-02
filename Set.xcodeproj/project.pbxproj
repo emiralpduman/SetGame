@@ -19,6 +19,7 @@
 		F3C15365285E2395001A7A81 /* SetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C15364285E2395001A7A81 /* SetGame.swift */; };
 		F3C15367285E23D1001A7A81 /* SetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C15366285E23D1001A7A81 /* SetCard.swift */; };
 		F3E079872896BB76004C0C5D /* Squiggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E079862896BB76004C0C5D /* Squiggle.swift */; };
+		F3E0798B2899C305004C0C5D /* StripedTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E0798A2899C305004C0C5D /* StripedTexture.swift */; };
 		F3EC0DE52873622B00D95C9F /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EC0DE42873622B00D95C9F /* View.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		F3C15364285E2395001A7A81 /* SetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGame.swift; sourceTree = "<group>"; };
 		F3C15366285E23D1001A7A81 /* SetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCard.swift; sourceTree = "<group>"; };
 		F3E079862896BB76004C0C5D /* Squiggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Squiggle.swift; sourceTree = "<group>"; };
+		F3E0798A2899C305004C0C5D /* StripedTexture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripedTexture.swift; sourceTree = "<group>"; };
 		F3EC0DE42873622B00D95C9F /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +77,7 @@
 			children = (
 				F36F3EF128665696008DA4D3 /* Diamond.swift */,
 				F3E079862896BB76004C0C5D /* Squiggle.swift */,
+				F3E0798A2899C305004C0C5D /* StripedTexture.swift */,
 			);
 			path = Shapes;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				F3C15357285E1C74001A7A81 /* SetApp.swift in Sources */,
 				F3C15367285E23D1001A7A81 /* SetCard.swift in Sources */,
 				F36F3EF72868CFD3008DA4D3 /* TableView.swift in Sources */,
+				F3E0798B2899C305004C0C5D /* StripedTexture.swift in Sources */,
 				F36F3EF92868D03B008DA4D3 /* Table.swift in Sources */,
 				F36F3EF52867B0E1008DA4D3 /* ShapeView.swift in Sources */,
 				F305E9AF2868D5E80062D905 /* AspectVGrid.swift in Sources */,

@@ -57,16 +57,16 @@ struct CardView: View {
     private struct Settings {
         static let cardPadding: CGFloat = 10
         static let paddingBetweenShapes: CGFloat = 3
-        static let geometryShapeToHeightRatio: CGFloat = 0.15
-        static let shapeWidthToHeightRatio: CGFloat = 2
+        static let geometryShapeToHeightRatio: CGFloat = 0.2
+        static let shapeWidthToHeightRatio: CGFloat = 1.2
         static let borderWidth: CGFloat = 3
     }
 }
 
-//struct CardView_Previews: PreviewProvider {
-//    static var table = Table()
-//    static var previews: some View {
-//        CardView(card: SetCard(numberOfShapes: .two, shape: .diamond, shading: .solid, color: .green))
-//            .environmentObject(table)
-//    }
-//}
+struct CardView_Previews: PreviewProvider {
+    static var table = Table()
+    static var previews: some View {
+        CardView(card: SetCard(numberOfShapes: .two, shape: .diamond, shading: .striped, color: .green))
+            .environmentObject(table)
+    }
+}

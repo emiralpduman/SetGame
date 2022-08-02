@@ -13,9 +13,9 @@ struct Squiggle: Shape {
         
         // Distance units
         let unitRatio: CGFloat = sqrt(Double(areaRatio))
-        let widthToHeightRatio: CGFloat = 0.75
-        let unitDistanceX: CGFloat = (rect.width/4) / unitRatio
-        let unitDistanceY: CGFloat = (rect.height/4) / unitRatio * widthToHeightRatio
+        let widthToHeightRatio: CGFloat = 1
+        let unitDistanceX: CGFloat = (rect.width/3.5) / unitRatio
+        let unitDistanceY: CGFloat = (rect.height/3.5) / unitRatio * widthToHeightRatio
         
         // Points
         let center = CGPoint(x: rect.width/2, y: rect.height/2)
@@ -23,10 +23,10 @@ struct Squiggle: Shape {
         let p2 = CGPoint(x: center.x + (2 * -unitDistanceX) , y: center.y +  (1 * unitDistanceY))
         let p3 = CGPoint(x: center.x + (2 * -unitDistanceX) , y: center.y +  (2 * -unitDistanceY))
         let p4 = CGPoint(x: center.x + (2 * unitDistanceX) , y: center.y +  (1 * -unitDistanceY))
-        let c1 = CGPoint(x: center.x + (1 * unitDistanceX) , y: center.y +  (1 * unitDistanceY))
-        let c2 = CGPoint(x: center.x + (1 * -unitDistanceX) , y: center.y +  (2 * unitDistanceY))
-        let c3 = CGPoint(x: center.x + (1 * -unitDistanceX) , y: center.y +  (1 * -unitDistanceY))
-        let c4 = CGPoint(x: center.x + (1 * unitDistanceX) , y: center.y +  (2 * -unitDistanceY))
+        let c1 = CGPoint(x: center.x + (1 * unitDistanceX) , y: center.y +  (0.5 * unitDistanceY))
+        let c2 = CGPoint(x: center.x + (1 * -unitDistanceX) , y: center.y +  (3 * unitDistanceY))
+        let c3 = CGPoint(x: center.x + (1 * -unitDistanceX) , y: center.y +  (0.5 * -unitDistanceY))
+        let c4 = CGPoint(x: center.x + (1 * unitDistanceX) , y: center.y +  (3 * -unitDistanceY))
         
         var p = Path()
         
