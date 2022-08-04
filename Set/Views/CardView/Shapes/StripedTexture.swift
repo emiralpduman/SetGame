@@ -8,21 +8,22 @@
 import SwiftUI
 
 struct StripedTexture:  Shape {
-    let density: CGFloat = 3
+    let density: Int = 20
+    let lineToEmptySpaceRatio: CGFloat = 3
     
     func path(in rect: CGRect) -> Path {
-        let x1 = CGFloat = rect.width/density
-        
-        
         var p = Path()
+        let unitDistance: CGFloat = rect.width / CGFloat(density)
         
-        p.move(to: CGPoint(x: rect.minX, y: rect.minY))
-        
-        p.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
-        p.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
-        p.addLine(to: CGPoint(x: rect.midX, y: rect.minY))
-        p.addLines(<#T##lines: [CGPoint]##[CGPoint]#>)
-        
+        for x in 0..<density {
+            let xInCGFloat = CGFloat(x)
+            p.move(to: CGPoint(x: rect.minX + lineToEmptySpaceRatio*xInCGFloat*unitDistance, y: rect.minY)) //p1
+
+            p.addLine(to: CGPoint(x: rect.minX + lineToEmptySpaceRatio*xInCGFloat*unitDistance, y: rect.maxY)) //p6
+            p.addLine(to: CGPoint(x: rect.minX + ((lineToEmptySpaceRatio*xInCGFloat+1)*unitDistance), y: rect.maxY))
+            p.addLine(to: CGPoint(x: rect.minX + ((lineToEmptySpaceRatio*xInCGFloat+1)*unitDistance), y: rect.minY))
+            
+        }
         return p
     }
     

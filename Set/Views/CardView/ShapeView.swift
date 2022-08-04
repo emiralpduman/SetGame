@@ -17,7 +17,7 @@ struct ShapeView: View {
             case .striped:
                 Diamond()
                     .stroke()
-                    .background(StripedTexture().fill(.black).clipShape(Diamond()))
+                    .background(StripedTexture().fill().clipShape(Diamond()))
                 
             case .open:
                 Diamond()
@@ -40,8 +40,8 @@ struct ShapeView: View {
                 
             case .striped:
                 Squiggle()
-                    .fill()
-                    .opacity(DrawingConstants.opacityValueForStripedShading)
+                    .stroke()
+                    .background(StripedTexture().fill().clipShape(Squiggle()))
             }
         
         case .oval:
@@ -56,8 +56,8 @@ struct ShapeView: View {
                 
             case .striped:
                 Ellipse()
-                    .fill()
-                    .opacity(DrawingConstants.opacityValueForStripedShading)
+                    .stroke()
+                    .background(StripedTexture().fill().clipShape(Ellipse()))
             }
         }
     }
