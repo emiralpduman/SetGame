@@ -77,7 +77,7 @@ struct SetGame {
                 thereIsSet = false
                 points -= Rules.PointPrizeForFindingSet * Rules.PointPunishmentToPrizeRatio * -dateDurationBetweenAttemps
             }
-            
+            timeOfLastSetAttempt = Date.now
         }
     }
     
@@ -109,8 +109,8 @@ struct SetGame {
         static let numberOfCards: Int = 2
         static let amountOfFirstDeal: Int = 12
         static let amountOfdefaultDeal: Int = 3
-        static let PointPrizeForFindingSet: Double = 10
-        static let PointPunishmentToPrizeRatio: Double = 0.5
+        static let PointPrizeForFindingSet: Double = 100
+        static let PointPunishmentToPrizeRatio: Double = 0.01
         
         static func isSet(_ card1: SetCard, _ card2: SetCard, _ card3: SetCard) -> Bool {
             var numbersAreSet: Bool = false
