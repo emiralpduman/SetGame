@@ -34,10 +34,12 @@ struct SetGame {
         }
     }
     
-    var points: Int = 0
+    var points: Double = 0
     
-    
-    
+    //Times
+    private let gameStartingTime: Date = Date.now
+    private var timeOfLastSetAttempt: Date?
+        
     mutating func dealBy(_ number: Int) {
         if deck.count >= number {
             for _ in 0..<number {
@@ -57,13 +59,23 @@ struct SetGame {
                 
             }
         }
+        
         if selectedCards.count == 3 {
+            let selectionTime: Date = Date.now
+            var dateDurationBetweenAttemps: Double
+            
+            if let timeOfLastSetAttempt = timeOfLastSetAttempt {
+                dateDurationBetweenAttemps = selectionTime.distance(to: timeOfLastSetAttempt)
+            } else {
+                dateDurationBetweenAttemps = selectionTime.distance(to: gameStartingTime)
+            }
+            
             if SetGame.Rules.isSet(selectedCards[0], selectedCards[1], selectedCards[2]) {
                 thereIsSet = true
-                points += Rules.PointPrizeForFindingSet
+                points += Rules.PointPrizeForFindingSet / -dateDurationBetweenAttemps
             } else {
                 thereIsSet = false
-                points -= Int(Float(Rules.PointPrizeForFindingSet)*Rules.PointPunishmentToPrizeRatio)
+                points -= Rules.PointPrizeForFindingSet * Rules.PointPunishmentToPrizeRatio * -dateDurationBetweenAttemps
             }
             
         }
@@ -97,8 +109,8 @@ struct SetGame {
         static let numberOfCards: Int = 2
         static let amountOfFirstDeal: Int = 12
         static let amountOfdefaultDeal: Int = 3
-        static let PointPrizeForFindingSet: Int = 10
-        static let PointPunishmentToPrizeRatio: Float = 0.5
+        static let PointPrizeForFindingSet: Double = 10
+        static let PointPunishmentToPrizeRatio: Double = 0.5
         
         static func isSet(_ card1: SetCard, _ card2: SetCard, _ card3: SetCard) -> Bool {
             var numbersAreSet: Bool = false

@@ -28,7 +28,7 @@ class Table: ObservableObject {
     }
     
     var score: Int {
-        game.points
+        Int(game.points)
     }
     
     func startNewGame() {
