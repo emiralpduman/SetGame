@@ -27,6 +27,10 @@ class Table: ObservableObject {
         game.evaluationPeriod
     }
     
+    var score: Int {
+        game.points
+    }
+    
     func startNewGame() {
         game = SetGame()
     }

@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct TableView: View {
-    @ObservedObject var table = Table()
+    @ObservedObject var table = Table() 
     
     var body: some View {
         
         VStack {
-            Button("New Game") {
-                table.startNewGame()
+            Text("Score: \(table.score)")
+            Text(table.thereIsSet ? "It's a set!" : "NOT Set")
+            Button("Deal 3 More Cards") {
+                table.deal()
             }
-            
+                .disabled(table.deck.isEmpty)
             AspectVGrid(items: table.cards, aspectRatio: 3/4) { card in
                 CardView(card: card)
                     .padding()
@@ -24,13 +26,9 @@ struct TableView: View {
                         table.select(card)
                     }
             }
-            
-            Text(table.thereIsSet ? "It's a set!" : "NOT Set")
-            
-            Button("Deal 3 More Cards") {
-                table.deal()
+            Button("New Game") {
+                table.startNewGame()
             }
-            .disabled(table.deck.isEmpty)
         }
         .padding()
         .environmentObject(table)

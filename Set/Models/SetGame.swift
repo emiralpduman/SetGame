@@ -32,7 +32,11 @@ struct SetGame {
         } else {
             return false
         }
-    }    
+    }
+    
+    var points: Int = 0
+    
+    
     
     mutating func dealBy(_ number: Int) {
         if deck.count >= number {
@@ -56,8 +60,10 @@ struct SetGame {
         if selectedCards.count == 3 {
             if SetGame.Rules.isSet(selectedCards[0], selectedCards[1], selectedCards[2]) {
                 thereIsSet = true
+                points += Rules.PointPrizeForFindingSet
             } else {
                 thereIsSet = false
+                points -= Int(Float(Rules.PointPrizeForFindingSet)*Rules.PointPunishmentToPrizeRatio)
             }
             
         }
@@ -91,6 +97,8 @@ struct SetGame {
         static let numberOfCards: Int = 2
         static let amountOfFirstDeal: Int = 12
         static let amountOfdefaultDeal: Int = 3
+        static let PointPrizeForFindingSet: Int = 10
+        static let PointPunishmentToPrizeRatio: Float = 0.5
         
         static func isSet(_ card1: SetCard, _ card2: SetCard, _ card3: SetCard) -> Bool {
             var numbersAreSet: Bool = false

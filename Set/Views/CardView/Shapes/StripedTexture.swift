@@ -17,9 +17,9 @@ struct StripedTexture:  Shape {
         
         for x in 0..<density {
             let xInCGFloat = CGFloat(x)
-            p.move(to: CGPoint(x: rect.minX + lineToEmptySpaceRatio*xInCGFloat*unitDistance, y: rect.minY)) //p1
+            p.move(to: CGPoint(x: rect.minX + lineToEmptySpaceRatio*xInCGFloat*unitDistance, y: rect.minY))
 
-            p.addLine(to: CGPoint(x: rect.minX + lineToEmptySpaceRatio*xInCGFloat*unitDistance, y: rect.maxY)) //p6
+            p.addLine(to: CGPoint(x: rect.minX + lineToEmptySpaceRatio*xInCGFloat*unitDistance, y: rect.maxY))
             p.addLine(to: CGPoint(x: rect.minX + ((lineToEmptySpaceRatio*xInCGFloat+1)*unitDistance), y: rect.maxY))
             p.addLine(to: CGPoint(x: rect.minX + ((lineToEmptySpaceRatio*xInCGFloat+1)*unitDistance), y: rect.minY))
             
