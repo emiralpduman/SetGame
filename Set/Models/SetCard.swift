@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SetCard: Identifiable {
+struct SetCard: Identifiable, Hashable {
     var id = UUID()
         
     let numberOfShapes: Number
@@ -32,7 +32,21 @@ struct SetCard: Identifiable {
 
     enum Color: CaseIterable {
         case red, green, purple
-    }    
+    }
+    
+    static func == (lhs: SetCard, rhs: SetCard) -> Bool {
+        return lhs.numberOfShapes == rhs.numberOfShapes &&
+                lhs.shape == rhs.shape &&
+                lhs.shading == rhs.shading &&
+                lhs.color == rhs.color
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(numberOfShapes)
+        hasher.combine(shape)
+        hasher.combine(shading)
+        hasher.combine(color)
+    }
 }
 
 

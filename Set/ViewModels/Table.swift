@@ -24,7 +24,7 @@ class Table: ObservableObject {
     }
     
     var isEvaluationPeriod: Bool {
-        game.evaluationPeriod
+        game.IsEvaluationPeriod
     }
     
     var score: Int {

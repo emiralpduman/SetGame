@@ -9,6 +9,23 @@ import Foundation
 import SwiftUI
 
 struct SetGame {
+    private static func generateASetDeck () -> [SetCard] {
+        var deck: [SetCard] = []
+        
+        for numberOfNewCard in SetCard.Number.allCases {
+            for shapeOfNewCard in SetCard.Shape.allCases {
+                for shadingOfNewCard in SetCard.Shading.allCases {
+                    for colorOfNewCard in SetCard.Color.allCases {
+                        deck.append(SetCard(numberOfShapes: numberOfNewCard, shape: shapeOfNewCard, shading: shadingOfNewCard, color: colorOfNewCard))
+                    }
+                }
+            }
+        }
+        
+        return deck
+    }
+    private let gameStartingTime: Date = Date.now
+    private var timeOfLastSetAttempt: Date?
     
     var deck = [SetCard]()
     var cardsOnTable = [SetCard]()
@@ -24,21 +41,15 @@ struct SetGame {
         
         return selection
     }
-    
     var thereIsSet = false
-    var evaluationPeriod: Bool {
+    var IsEvaluationPeriod: Bool {
         if selectedCards.count == 3 {
             return true
         } else {
             return false
         }
     }
-    
     var points: Double = 0
-    
-    //Times
-    private let gameStartingTime: Date = Date.now
-    private var timeOfLastSetAttempt: Date?
         
     mutating func dealBy(_ number: Int) {
         if deck.count >= number {
@@ -51,7 +62,6 @@ struct SetGame {
             }
         }
     }
-    
     mutating func select(_ card: SetCard) {
         for index in 0..<cardsOnTable.count {
             if cardsOnTable[index].id == card.id {
@@ -80,7 +90,6 @@ struct SetGame {
             timeOfLastSetAttempt = Date.now
         }
     }
-    
     mutating func removeFromTable(cards: [SetCard]) {
         for card in cards {
             if let indexOfCard = cardsOnTable.firstIndex(where: { $0.id == card.id }) {
@@ -92,26 +101,76 @@ struct SetGame {
     }
     
     init() {
-        for numberOfNewCard in SetCard.Number.allCases {
-            for shapeOfNewCard in SetCard.Shape.allCases {
-                for shadingOfNewCard in SetCard.Shading.allCases {
-                    for colorOfNewCard in SetCard.Color.allCases {
-                        deck.append(SetCard(numberOfShapes: numberOfNewCard, shape: shapeOfNewCard, shading: shadingOfNewCard, color: colorOfNewCard))
-                    }
-                }
-            }
-        }
+        var deck: [SetCard] = Self.generateASetDeck()
         deck.shuffle()
         dealBy(Rules.amountOfFirstDeal)
     }
     
     struct Rules {
-        static let numberOfCards: Int = 2
-        static let amountOfFirstDeal: Int = 12
-        static let amountOfdefaultDeal: Int = 3
-        static let PointPrizeForFindingSet: Double = 100
-        static let PointPunishmentToPrizeRatio: Double = 0.01
-        
+        static private func setCombinations() -> Set<Set<SetCard>> {
+            let deck: [SetCard] = SetGame.generateASetDeck()
+            var setOfAllSets: Set<Set<SetCard>> = []
+            
+            // Buraya deckOfSets döndüren kodu yaz.
+//            for indexP1 in 0..<deck.count {
+//                let p1: SetCard = deck[indexP1]
+//
+//                for indexP2 in 1..<deck.count {
+//                    let p2: SetCard = deck[indexP2]
+//
+//                    for indexP3 in 2..<deck.count {
+//                        let p3: SetCard = deck[indexP3]
+//
+//                        if SetGame.Rules.isSet(p1, p2, p3) {
+//                            let setInstance: Set<SetCard> = [p1, p2, p3]
+//                            var isADuplicate: Bool = false
+//
+//                            for element in deckOfSets {
+//                                if element == setInstance {
+//                                    isADuplicate = true
+//                                }
+//                            }
+//
+//                            if !isADuplicate {
+//                                deckOfSets.append(setInstance)
+//                            }
+//                        }
+//                    }
+//                }
+//
+//            }
+            
+            for firstCard in deck {
+                var setInstance: Set<SetCard> = []
+                setInstance.insert(firstCard)
+                
+                for secondCard in deck {
+                    if !setInstance.contains(secondCard) {
+                        setInstance.insert(secondCard)
+                        
+                        for thirdCard in deck {
+                            if !setInstance.contains(thirdCard) {
+                                setInstance.insert(thirdCard)
+                                
+                                if isSet(firstCard, secondCard, thirdCard) {
+                                    setOfAllSets.insert(setInstance)
+                                }
+                                
+                                setInstance.remove(thirdCard)
+                            }
+                                
+                        }
+                        
+                        setInstance.remove(secondCard)
+                    }
+                }
+            }
+            
+            print("Final count of setOfAllSets = \(setOfAllSets.count)")
+            
+            return setOfAllSets
+        }
+
         static func isSet(_ card1: SetCard, _ card2: SetCard, _ card3: SetCard) -> Bool {
             var numbersAreSet: Bool = false
             var shapesAreSet: Bool = false
@@ -157,6 +216,13 @@ struct SetGame {
             
             return isSet
         }
+        
+        static let numberOfCards: Int = 2
+        static let amountOfFirstDeal: Int = 12
+        static let amountOfdefaultDeal: Int = 3
+        static let PointPrizeForFindingSet: Double = 100
+        static let PointPunishmentToPrizeRatio: Double = 0.01
+        static let allSetCombinations: Set<Set<SetCard>> = setCombinations()
     }
     
 }
