@@ -19,8 +19,8 @@ class Table: ObservableObject {
         game.deck
     }
     
-    var thereIsSet: Bool {
-        game.thereIsSet
+    var selectionIsSet: Bool {
+        game.selectionIsSet
     }
     
     var isEvaluationPeriod: Bool {
@@ -40,9 +40,9 @@ class Table: ObservableObject {
             game.select(card)
         }
         else {
-            if thereIsSet {
+            if selectionIsSet {
                 game.removeFromTable(cards: game.selectedCards)
-                game.dealBy(SetGame.Rules.amountOfdefaultDeal)
+                game.dealMore()
                 if let _ = game.selectedCards.firstIndex(where: { $0.id == card.id}) {
                     
                 }
@@ -60,12 +60,7 @@ class Table: ObservableObject {
     }
     
     func deal() {
-        if thereIsSet {
-            for card in game.selectedCards {
-                game.removeFromTable(cards: [card])
-            }
-        }
-        game.dealBy(SetGame.Rules.amountOfdefaultDeal)
+        game.dealMore()
     }
     
     // MARK: -Card

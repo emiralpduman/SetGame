@@ -11,7 +11,6 @@ struct denemeSayfasi: View {
     var body: some View {
         Text("Hello")
             .onAppear() {
-                _ = SetGame.Rules.allSetCombinations
             }
     }
 }

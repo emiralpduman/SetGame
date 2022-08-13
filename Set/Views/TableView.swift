@@ -14,7 +14,7 @@ struct TableView: View {
         
         VStack {
             Text("Score: \(table.score)")
-            Text(table.thereIsSet ? "It's a set!" : "NOT Set")
+            Text(table.selectionIsSet ? "It's a set!" : "NOT Set")
             Button("Deal 3 More Cards") {
                 table.deal()
             }

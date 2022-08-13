@@ -39,7 +39,7 @@ struct CardView: View {
     @ViewBuilder func themeLogic<Content: View>(_ content: Content) -> some View {
         if card.isSelected {
             if game.isEvaluationPeriod {
-                if game.thereIsSet {
+                if game.selectionIsSet {
                     content.border(game.cardColorOfSet, width: Settings.borderWidth)
                 } else {
                     content.border(game.cardColorOfNotSet, width: Settings.borderWidth)

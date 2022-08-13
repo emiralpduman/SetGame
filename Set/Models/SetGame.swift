@@ -41,7 +41,7 @@ struct SetGame {
         
         return selection
     }
-    var thereIsSet = false
+    var selectionIsSet = false
     var IsEvaluationPeriod: Bool {
         if selectedCards.count == 3 {
             return true
@@ -49,9 +49,50 @@ struct SetGame {
             return false
         }
     }
+    var thereIsSetOnTable: Bool {
+        for firstCard in cardsOnTable {
+            var setInstance: Set<SetCard> = []
+            setInstance.insert(firstCard)
+            
+            for secondCard in cardsOnTable {
+                if !setInstance.contains(secondCard) {
+                    setInstance.insert(secondCard)
+                    
+                    for thirdCard in cardsOnTable {
+                        if !setInstance.contains(thirdCard) {
+                            setInstance.insert(thirdCard)
+                            
+                            if Rules.isSet(firstCard, secondCard, thirdCard) {
+                                return true
+                            }
+                            
+                            setInstance.remove(thirdCard)
+                        }
+                            
+                    }
+                    
+                    setInstance.remove(secondCard)
+                }
+            }
+        }
+        return false
+    }
     var points: Double = 0
+    
+    mutating func dealMore() {
+        if selectionIsSet {
+            for card in selectedCards {
+                removeFromTable(cards: [card])
+            }
+        }
         
-    mutating func dealBy(_ number: Int) {
+        if thereIsSetOnTable {
+            points -= Rules.PointPunishmentForMissingASet
+        }
+        dealBy(SetGame.Rules.amountOfdefaultDeal)
+    }
+        
+    private mutating func dealBy(_ number: Int) {
         if deck.count >= number {
             for _ in 0..<number {
                 cardsOnTable.append(deck.removeFirst())
@@ -81,10 +122,10 @@ struct SetGame {
             }
             
             if SetGame.Rules.isSet(selectedCards[0], selectedCards[1], selectedCards[2]) {
-                thereIsSet = true
+                selectionIsSet = true
                 points += Rules.PointPrizeForFindingSet / -dateDurationBetweenAttemps
             } else {
-                thereIsSet = false
+                selectionIsSet = false
                 points -= Rules.PointPrizeForFindingSet * Rules.PointPunishmentToPrizeRatio * -dateDurationBetweenAttemps
             }
             timeOfLastSetAttempt = Date.now
@@ -101,7 +142,7 @@ struct SetGame {
     }
     
     init() {
-        var deck: [SetCard] = Self.generateASetDeck()
+        deck = Self.generateASetDeck()
         deck.shuffle()
         dealBy(Rules.amountOfFirstDeal)
     }
@@ -110,35 +151,6 @@ struct SetGame {
         static private func setCombinations() -> Set<Set<SetCard>> {
             let deck: [SetCard] = SetGame.generateASetDeck()
             var setOfAllSets: Set<Set<SetCard>> = []
-            
-            // Buraya deckOfSets döndüren kodu yaz.
-//            for indexP1 in 0..<deck.count {
-//                let p1: SetCard = deck[indexP1]
-//
-//                for indexP2 in 1..<deck.count {
-//                    let p2: SetCard = deck[indexP2]
-//
-//                    for indexP3 in 2..<deck.count {
-//                        let p3: SetCard = deck[indexP3]
-//
-//                        if SetGame.Rules.isSet(p1, p2, p3) {
-//                            let setInstance: Set<SetCard> = [p1, p2, p3]
-//                            var isADuplicate: Bool = false
-//
-//                            for element in deckOfSets {
-//                                if element == setInstance {
-//                                    isADuplicate = true
-//                                }
-//                            }
-//
-//                            if !isADuplicate {
-//                                deckOfSets.append(setInstance)
-//                            }
-//                        }
-//                    }
-//                }
-//
-//            }
             
             for firstCard in deck {
                 var setInstance: Set<SetCard> = []
@@ -222,6 +234,7 @@ struct SetGame {
         static let amountOfdefaultDeal: Int = 3
         static let PointPrizeForFindingSet: Double = 100
         static let PointPunishmentToPrizeRatio: Double = 0.01
+        static let PointPunishmentForMissingASet: Double = 10
         static let allSetCombinations: Set<Set<SetCard>> = setCombinations()
     }
     
