@@ -16,7 +16,7 @@ struct SetCard: Identifiable, Hashable {
     let color: Color
 
     var isSelected = false
-
+    var isHighlighted = false
     
     enum Number: CaseIterable {
         case one, two, threee
@@ -31,7 +31,7 @@ struct SetCard: Identifiable, Hashable {
     }
 
     enum Color: CaseIterable {
-        case red, green, purple
+        case red, green, yellow
     }
     
     static func == (lhs: SetCard, rhs: SetCard) -> Bool {

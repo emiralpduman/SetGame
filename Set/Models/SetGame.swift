@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct SetGame {
+    
     private static func generateASetDeck () -> [SetCard] {
         var deck: [SetCard] = []
         
@@ -24,6 +25,7 @@ struct SetGame {
         
         return deck
     }
+    
     private let gameStartingTime: Date = Date.now
     private var timeOfLastSetAttempt: Date?
     
@@ -49,7 +51,8 @@ struct SetGame {
             return false
         }
     }
-    var thereIsSetOnTable: Bool {
+    var setsOnTable: Set<Set<SetCard>> {
+        var setToBeReturned: Set<Set<SetCard>> = []
         for firstCard in cardsOnTable {
             var setInstance: Set<SetCard> = []
             setInstance.insert(firstCard)
@@ -63,7 +66,7 @@ struct SetGame {
                             setInstance.insert(thirdCard)
                             
                             if Rules.isSet(firstCard, secondCard, thirdCard) {
-                                return true
+                                setToBeReturned.insert(setInstance)
                             }
                             
                             setInstance.remove(thirdCard)
@@ -75,7 +78,8 @@ struct SetGame {
                 }
             }
         }
-        return false
+        return setToBeReturned
+        
     }
     var points: Double = 0
     
@@ -86,22 +90,10 @@ struct SetGame {
             }
         }
         
-        if thereIsSetOnTable {
+        if setsOnTable.count != 0 {
             points -= Rules.PointPunishmentForMissingASet
         }
         dealBy(SetGame.Rules.amountOfdefaultDeal)
-    }
-        
-    private mutating func dealBy(_ number: Int) {
-        if deck.count >= number {
-            for _ in 0..<number {
-                cardsOnTable.append(deck.removeFirst())
-            }
-        } else {
-            for _ in 0..<deck.count {
-                cardsOnTable.append(deck.removeFirst())
-            }
-        }
     }
     mutating func select(_ card: SetCard) {
         for index in 0..<cardsOnTable.count {
@@ -140,6 +132,20 @@ struct SetGame {
             }
         }
     }
+
+        
+    private mutating func dealBy(_ number: Int) {
+        if deck.count >= number {
+            for _ in 0..<number {
+                cardsOnTable.append(deck.removeFirst())
+            }
+        } else {
+            for _ in 0..<deck.count {
+                cardsOnTable.append(deck.removeFirst())
+            }
+        }
+    }
+
     
     init() {
         deck = Self.generateASetDeck()
@@ -177,9 +183,7 @@ struct SetGame {
                     }
                 }
             }
-            
-            print("Final count of setOfAllSets = \(setOfAllSets.count)")
-            
+        
             return setOfAllSets
         }
 

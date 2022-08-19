@@ -10,6 +10,10 @@ import SwiftUI
 class Table: ObservableObject {
     @Published private var game = SetGame()
     
+    // For development purposes
+    var numberOfSetsOnTable: Int {
+        game.setsOnTable.count
+    }
     
     var cards: [SetCard] {
         game.cardsOnTable
@@ -29,6 +33,10 @@ class Table: ObservableObject {
     
     var score: Int {
         Int(game.points)
+    }
+    
+    func randomSet() -> Set<SetCard> {
+        game.setsOnTable.randomElement() ?? []
     }
     
     func startNewGame() {
@@ -72,8 +80,8 @@ class Table: ObservableObject {
             return Color.red
         case .green:
             return Color.green
-        case .purple:
-            return Color.purple
+        case .yellow:
+            return Color.yellow
         }
         
     }
