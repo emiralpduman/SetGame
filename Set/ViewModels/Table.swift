@@ -8,11 +8,16 @@
 import SwiftUI
 
 class Table: ObservableObject {
-    @Published private var game = SetGame()
+    @Published private var game = SetGame(for: .one)
         
     // For development purposes
     var numberOfSetsOnTable: Int {
         game.setsOnTable.count
+    }
+    
+    //2 Player Mode
+    var numberOfPlayers: Int {
+        game.numberOfPlayers.rawValue
     }
     
     var cards: [SetCard] {
@@ -32,15 +37,20 @@ class Table: ObservableObject {
     }
     
     var score: Int {
-        Int(game.points)
+        Int(game.player1.points)
     }
     
     func randomSet() -> Set<SetCard> {
         game.setsOnTable.randomElement() ?? []
     }
     
-    func startNewGame() {
-        game = SetGame()
+    func startNewGame(for numberOfPlayers: SetGame.NumberOfPlayers) {
+        switch numberOfPlayers {
+        case .one:
+            game = SetGame(for: .one)
+        case .two:
+            game = SetGame(for: .two)
+        }
     }
 
     func select(_ card: SetCard) {

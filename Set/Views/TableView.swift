@@ -21,6 +21,8 @@ struct TableView: View {
             Text("Sets on table: \(table.numberOfSetsOnTable)")
             Text("Score: \(table.score)")
             Text(table.selectionIsSet ? "It's a set!" : "NOT Set")
+            
+            // TODO: Bunu ViewBuilder'a al, switch'li
             Button("Deal 3 More Cards") {
                 table.deal()
             }
@@ -33,6 +35,8 @@ struct TableView: View {
                 
             }
             .padding()
+            
+            // TODO: Bunu ViewBuilder'a al.
             AspectVGrid(items: table.cards, aspectRatio: 3/4) { card in
                 if itIsCheatingTime {
                     if ARandomSetOnTable.contains(card) {
@@ -57,8 +61,12 @@ struct TableView: View {
                         }
                 }
             }
-            Button("New Game") {
-                table.startNewGame()
+            
+            Button("New Game for 1") {
+                table.startNewGame(for: .one)
+            }
+            Button("New Game for 2") {
+                table.startNewGame(for: .two)
             }
         }
         .environmentObject(table)
