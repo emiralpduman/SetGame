@@ -29,6 +29,12 @@ struct SetGame {
     private let gameStartingTime: Date = Date.now
     private var timeOfLastSetAttempt: Date?
     
+    var numberOfPlayers: NumberOfPlayers
+    var aSetIsClaimed: Bool = false
+    var activePlayer: Player?
+    var player1: Player = Player()
+    var player2: Player?
+    
     var deck = [SetCard]()
     var cardsOnTable = [SetCard]()
     var selectedCards: [SetCard] {
@@ -71,7 +77,7 @@ struct SetGame {
                             
                             setInstance.remove(thirdCard)
                         }
-                            
+                        
                     }
                     
                     setInstance.remove(secondCard)
@@ -81,48 +87,68 @@ struct SetGame {
         return setToBeReturned
         
     }
-    var points: Double = 0
     
     mutating func dealMore() {
-        if selectionIsSet {
-            for card in selectedCards {
-                removeFromTable(cards: [card])
+        if let activePlayer = activePlayer {
+            if selectionIsSet {
+                for card in selectedCards {
+                    removeFromTable(cards: [card])
+                }
             }
-        }
-        
-        if setsOnTable.count != 0 {
-            points -= Rules.PointPunishmentForMissingASet
-        }
-        dealBy(SetGame.Rules.amountOfdefaultDeal)
+            if setsOnTable.count != 0 {
+                activePlayer.points -= Rules.PointPunishmentForMissingASet
+            }
+            dealBy(SetGame.Rules.amountOfdefaultDeal)
+        } else {}
     }
+    
     mutating func select(_ card: SetCard) {
-        for index in 0..<cardsOnTable.count {
-            if cardsOnTable[index].id == card.id {
-                cardsOnTable[index].isSelected.toggle()
-                
+        if let activePlayer = activePlayer {
+            for index in 0..<cardsOnTable.count {
+                if cardsOnTable[index].id == card.id {
+                    cardsOnTable[index].isSelected.toggle()
+
+                }
             }
-        }
-        
-        if selectedCards.count == 3 {
-            let selectionTime: Date = Date.now
-            var dateDurationBetweenAttemps: Double
-            
-            if let timeOfLastSetAttempt = timeOfLastSetAttempt {
-                dateDurationBetweenAttemps = selectionTime.distance(to: timeOfLastSetAttempt)
-            } else {
-                dateDurationBetweenAttemps = selectionTime.distance(to: gameStartingTime)
+            switch numberOfPlayers {
+            case .one:
+
+                if selectedCards.count == 3 {
+                    let selectionTime: Date = Date.now
+
+                    var dateDurationBetweenAttemps: Double
+
+                    if let timeOfLastSetAttempt = timeOfLastSetAttempt {
+                        dateDurationBetweenAttemps = selectionTime.distance(to: timeOfLastSetAttempt)
+                    } else {
+                        dateDurationBetweenAttemps = selectionTime.distance(to: gameStartingTime)
+                    }
+
+                    if SetGame.Rules.isSet(selectedCards[0], selectedCards[1], selectedCards[2]) {
+                        selectionIsSet = true
+                        activePlayer.points += Rules.PointPrizeForFindingSet / -dateDurationBetweenAttemps
+                    } else {
+                        selectionIsSet = false
+                        activePlayer.points -= Rules.PointPrizeForFindingSet * Rules.PointPunishmentToPrizeRatio * -dateDurationBetweenAttemps
+                    }
+                    timeOfLastSetAttempt = Date.now
+                }
+            case .two:
+                let timer = Timer.scheduledTimer(timeInterval: Rules.timeIntervalForClaimingASet, target: self, selector: Selector(("punishingActivePlayer")), userInfo: nil, repeats: false)
+                if selectedCards.count == 3 {
+                    timer.invalidate()
+                    if SetGame.Rules.isSet(selectedCards[0], selectedCards[1], selectedCards[2]) {
+                        selectionIsSet = true
+                        activePlayer.points += Rules.PointPrizeForFindingSet
+                    } else {
+                        selectionIsSet = false
+                        activePlayer.points -= Rules.PointPrizeForFindingSet * Rules.PointPunishmentToPrizeRatio
+                    }
+                }
             }
-            
-            if SetGame.Rules.isSet(selectedCards[0], selectedCards[1], selectedCards[2]) {
-                selectionIsSet = true
-                points += Rules.PointPrizeForFindingSet / -dateDurationBetweenAttemps
-            } else {
-                selectionIsSet = false
-                points -= Rules.PointPrizeForFindingSet * Rules.PointPunishmentToPrizeRatio * -dateDurationBetweenAttemps
-            }
-            timeOfLastSetAttempt = Date.now
-        }
+        } else {}
     }
+    
     mutating func removeFromTable(cards: [SetCard]) {
         for card in cards {
             if let indexOfCard = cardsOnTable.firstIndex(where: { $0.id == card.id }) {
@@ -132,8 +158,15 @@ struct SetGame {
             }
         }
     }
-
-        
+    private mutating func punishingActivePlayer() {
+        for index in 0..<self.cardsOnTable.count {
+            self.cardsOnTable[index].isSelected = false
+        }
+        self.activePlayer!.points -= Rules.PointPrizeForFindingSet * Rules.PointPunishmentToPrizeRatio * Rules.failingClaimingSetPunishmentCoefficient
+        self.activePlayer = nil
+    }
+    
+    
     private mutating func dealBy(_ number: Int) {
         if deck.count >= number {
             for _ in 0..<number {
@@ -145,11 +178,15 @@ struct SetGame {
             }
         }
     }
-
     
-    init() {
+    
+    init(for numberOfPlayers: NumberOfPlayers) {
+        self.numberOfPlayers = numberOfPlayers
         deck = Self.generateASetDeck()
         deck.shuffle()
+        if numberOfPlayers == .two {
+            player2 = Player()
+        }
         dealBy(Rules.amountOfFirstDeal)
     }
     
@@ -176,17 +213,17 @@ struct SetGame {
                                 
                                 setInstance.remove(thirdCard)
                             }
-                                
+                            
                         }
                         
                         setInstance.remove(secondCard)
                     }
                 }
             }
-        
+            
             return setOfAllSets
         }
-
+        
         static func isSet(_ card1: SetCard, _ card2: SetCard, _ card3: SetCard) -> Bool {
             var numbersAreSet: Bool = false
             var shapesAreSet: Bool = false
@@ -240,6 +277,18 @@ struct SetGame {
         static let PointPunishmentToPrizeRatio: Double = 0.01
         static let PointPunishmentForMissingASet: Double = 10
         static let allSetCombinations: Set<Set<SetCard>> = setCombinations()
+        static let timeIntervalForClaimingASet: Double = 5
+        static let failingClaimingSetPunishmentCoefficient: Double = 1.5
     }
+    
+    class Player: Identifiable {
+        let id: UUID = UUID()
+        var points: Double = 0
+    }
+    
+    enum NumberOfPlayers: Int {
+        case one = 1, two
+    }
+    
     
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 class Table: ObservableObject {
     @Published private var game = SetGame()
-    
+        
     // For development purposes
     var numberOfSetsOnTable: Int {
         game.setsOnTable.count

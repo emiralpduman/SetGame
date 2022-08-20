@@ -16,6 +16,8 @@ struct TableView: View {
     var body: some View {
         
         VStack {
+            Text("\(table.numberOfPlayers) Players")
+                .font(.headline)
             Text("Sets on table: \(table.numberOfSetsOnTable)")
             Text("Score: \(table.score)")
             Text(table.selectionIsSet ? "It's a set!" : "NOT Set")
