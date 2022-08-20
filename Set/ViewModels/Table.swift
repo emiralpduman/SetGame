@@ -16,8 +16,8 @@ class Table: ObservableObject {
     }
     
     //2 Player Mode
-    var numberOfPlayers: Int {
-        game.numberOfPlayers.rawValue
+    var numberOfPlayers: SetGame.NumberOfPlayers {
+        game.numberOfPlayers
     }
     
     var cards: [SetCard] {

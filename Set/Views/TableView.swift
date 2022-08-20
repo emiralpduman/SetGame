@@ -13,20 +13,62 @@ struct TableView: View {
     @State var itIsCheatingTime: Bool = false
     @State var ARandomSetOnTable: Set<SetCard> = []
     
+    @ViewBuilder func PlayingButtons() -> some View {
+        switch table.numberOfPlayers {
+        case .one:
+            Button("Deal 3 More Cards") {
+                table.deal()
+            }
+            .disabled(table.deck.isEmpty)
+        case .two:
+            HStack {
+                VStack {
+                    Button("Deal 3 More Cards") {
+                        table.deal()
+                    }
+                    .padding(5)
+                    .background(RoundedRectangle(cornerRadius: 10).fill(.yellow))
+                    .disabled(table.deck.isEmpty)
+                    Button("Claim A Set!") {
+                        table.deal()
+                    }
+                    .padding(5)
+                    .background(RoundedRectangle(cornerRadius: 10).fill(.yellow))
+                    .disabled(table.deck.isEmpty)
+
+                }
+                Spacer()
+                VStack {
+                    Button("Deal 3 More Cards") {
+                        table.deal()
+                    }
+                    .padding(5)
+                    .background(RoundedRectangle(cornerRadius: 10).fill(.red))
+                    .disabled(table.deck.isEmpty)
+                    Button("Claim A Set!") {
+                        table.deal()
+                    }
+                    .padding(5)
+                    .background(RoundedRectangle(cornerRadius: 10).fill(.red))
+                    .disabled(table.deck.isEmpty)
+                }
+                
+            }.padding(.horizontal)
+
+            
+        }
+    }
+    
     var body: some View {
         
         VStack {
-            Text("\(table.numberOfPlayers) Players")
+            Text("\(table.numberOfPlayers.rawValue) Players")
                 .font(.headline)
             Text("Sets on table: \(table.numberOfSetsOnTable)")
             Text("Score: \(table.score)")
             Text(table.selectionIsSet ? "It's a set!" : "NOT Set")
             
-            // TODO: Bunu ViewBuilder'a al, switch'li
-            Button("Deal 3 More Cards") {
-                table.deal()
-            }
-                .disabled(table.deck.isEmpty)
+            PlayingButtons()
             Button("😈") {
                 itIsCheatingTime.toggle()
                 if itIsCheatingTime {
@@ -35,8 +77,6 @@ struct TableView: View {
                 
             }
             .padding()
-            
-            // TODO: Bunu ViewBuilder'a al.
             AspectVGrid(items: table.cards, aspectRatio: 3/4) { card in
                 if itIsCheatingTime {
                     if ARandomSetOnTable.contains(card) {
@@ -45,13 +85,13 @@ struct TableView: View {
                             .background(.purple, in: RoundedRectangle(cornerRadius: 5))
                             .onTapGesture {
                                 table.select(card)
-                        }
+                            }
                     } else {
                         CardView(card: card)
                             .padding()
                             .onTapGesture {
                                 table.select(card)
-                        }
+                            }
                     }
                 } else {
                     CardView(card: card)
