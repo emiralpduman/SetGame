@@ -62,11 +62,17 @@ struct TableView: View {
                 }
             }
             
-            Button("New Game for 1") {
-                table.startNewGame(for: .one)
-            }
-            Button("New Game for 2") {
-                table.startNewGame(for: .two)
+            HStack {
+                Button("New Game for 1") {
+                    table.startNewGame(for: .one)
+                }
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 10).stroke())
+                Button("New Game for 2") {
+                    table.startNewGame(for: .two)
+                }
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 10).stroke())
             }
         }
         .environmentObject(table)
